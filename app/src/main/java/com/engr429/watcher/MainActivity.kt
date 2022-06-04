@@ -17,6 +17,5 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        binding.tvS.text = "AYYYWA YA KOZI"
     }
 }
