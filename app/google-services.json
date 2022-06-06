@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "510264178135",
+    "project_id": "watcher-835ee",
+    "storage_bucket": "watcher-835ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510264178135:android:7e4050d577d0bd27e20792",
+        "android_client_info": {
+          "package_name": "com.engr429.watcher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510264178135-n8uo7snop7k8cr9jg67vmpraol4p1h37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.engr429.watcher",
+            "certificate_hash": "083baaae84ca62293dfcfb3ff2117d1583bd4aa8"
+          }
+        },
+        {
+          "client_id": "510264178135-6ri2sh3o7fiju77gmtas0v98udggnlfd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVAwbuAPmWRLknm4ww4yWKzdel_oOWCp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510264178135-6ri2sh3o7fiju77gmtas0v98udggnlfd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
