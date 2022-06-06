@@ -40,11 +40,11 @@
         app:cardCornerRadius="25dp">
 
         <ImageView
+            android:id="@+id/img_scene"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="scene goes here"
-            android:src="@drawable/ic_launcher_foreground"
-            app:tint="@color/dark_blue"
+            tools:src="@drawable/ic_launcher_foreground"
             />
     </androidx.cardview.widget.CardView>
 
