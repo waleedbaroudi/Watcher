@@ -7,22 +7,19 @@ import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.engr429.watcher.api.CallConsumer
+import com.engr429.watcher.api.IWatcherApi
 import com.engr429.watcher.api.WatcherApi
 import com.engr429.watcher.databinding.ActivityAllScenesBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 private const val TAG = "AllScenesActivity"
 
 class AllScenesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAllScenesBinding
-    private lateinit var api: WatcherApi
+    private val api = WatcherApi.instance
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAllScenesBinding.inflate(layoutInflater)
-        api = WatcherApi.create()
         setContentView(binding.root)
         getSceneKeys()
     }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -12,12 +13,17 @@ import com.engr429.watcher.R
 import com.engr429.watcher.Constants.IMAGE_KEY
 import com.engr429.watcher.Constants.LABEL_KEY
 import com.engr429.watcher.Constants.S3_URL
+import com.engr429.watcher.api.CallConsumer
+import com.engr429.watcher.api.WatcherApi
+import com.engr429.watcher.api.WatcherUpdate
 import com.engr429.watcher.databinding.ActivityMainBinding
+
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), NotificationDelegate {
 
     private lateinit var binding: ActivityMainBinding
-
+    private val api = WatcherApi.instance
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -65,13 +71,14 @@ class MainActivity : AppCompatActivity(), NotificationDelegate {
 
     private fun onButtonChecked(id: Int, isChecked: Boolean) {
         if (isChecked) {
-            if (id == binding.btnAuto.id) {
+            val update = if (id == binding.btnAuto.id) {
                 showAngleUi(false)
-                // todo: notify cam to go auto
+                WatcherUpdate(0)
             } else {
                 showAngleUi(true)
-                // notify cam to go manual
+                WatcherUpdate(1)
             }
+            CallConsumer.consume(api.sendUpdate(update), {}, { Log.e(TAG, "onButtonChecked: ", it) })
         }
     }
 
