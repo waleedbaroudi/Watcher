@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.recyclerview.widget.GridLayoutManager
+import com.engr429.watcher.api.CallConsumer
 import com.engr429.watcher.api.WatcherApi
 import com.engr429.watcher.databinding.ActivityAllScenesBinding
 import retrofit2.Call
@@ -27,34 +28,20 @@ class AllScenesActivity : AppCompatActivity() {
     }
 
     private fun getSceneKeys() {
-        api.getSceneKeys().enqueue(object: Callback<List<String>> {
-            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
-                if (response.isSuccessful)
-
-                    response.body()?.let { keys ->
-                        handleSceneKeys(keys)
-                        binding.tvAllScenes.animate().translationY(0f).setInterpolator(DecelerateInterpolator()).withEndAction {
-                            runOnUiThread {
-                                binding.recyclerScenes.visibility = View.VISIBLE
-                            }
-                        }
-                    }
-                else
-                    Log.e(TAG, "onResponse: ${response.code()} - ${response.errorBody()}")
-            }
-
-            override fun onFailure(call: Call<List<String>>, t: Throwable) {
-                Log.e(TAG, "onFailure: ERROR", t)
-            }
-
-        })
-
+        CallConsumer.consume(api.getSceneKeys(),
+            onSuccess = { handleSceneKeys(it) },
+            onFailure = { Log.e(TAG, "onFailure: ERROR", it) })
     }
 
     private fun handleSceneKeys(keys: List<String>) {
         binding.recyclerScenes.apply {
             adapter = SceneAdapter(keys)
             layoutManager = GridLayoutManager(this@AllScenesActivity, 2)
+        }
+        binding.tvAllScenes.animate().translationY(0f).setInterpolator(DecelerateInterpolator()).withEndAction {
+            runOnUiThread {
+                binding.recyclerScenes.visibility = View.VISIBLE
+            }
         }
     }
 }
