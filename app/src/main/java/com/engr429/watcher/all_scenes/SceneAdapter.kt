@@ -24,6 +24,6 @@ class SceneAdapter(private val keys: List<String>): RecyclerView.Adapter<SceneVi
 class SceneViewHolder(private val binding: CellSceneBinding): RecyclerView.ViewHolder(binding.root) {
     private val context = binding.root.context
     fun bind(imageKey: String) {
-        Glide.with(context).load("${Constants.serverUrl}/$imageKey").into(binding.imgScene)
+        Glide.with(context).load("${Constants.S3_URL}/$imageKey").into(binding.imgScene)
     }
 }

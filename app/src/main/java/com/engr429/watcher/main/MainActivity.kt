@@ -9,10 +9,9 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.engr429.watcher.all_scenes.AllScenesActivity
 import com.engr429.watcher.R
-import com.engr429.watcher.Constants
-import com.engr429.watcher.Constants.imageKey
-import com.engr429.watcher.Constants.labelKey
-import com.engr429.watcher.Constants.serverUrl
+import com.engr429.watcher.Constants.IMAGE_KEY
+import com.engr429.watcher.Constants.LABEL_KEY
+import com.engr429.watcher.Constants.S3_URL
 import com.engr429.watcher.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), NotificationDelegate {
@@ -30,8 +29,8 @@ class MainActivity : AppCompatActivity(), NotificationDelegate {
 
     private fun checkIntent() {
         intent.extras?.let { data ->
-            val s3Key = data.getString(imageKey)
-            val label = data.getString(labelKey)
+            val s3Key = data.getString(IMAGE_KEY)
+            val label = data.getString(LABEL_KEY)
             handleNotificationData(s3Key, label)
         }
     }
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity(), NotificationDelegate {
             Toast.makeText(this, "NULL KEY", Toast.LENGTH_SHORT).show()
             return
         }
-        Glide.with(this).load("$serverUrl/$key").into(binding.imgScene)
+        Glide.with(this).load("$S3_URL/$key").into(binding.imgScene)
     }
 
     private fun setupView() {
@@ -91,12 +90,8 @@ class MainActivity : AppCompatActivity(), NotificationDelegate {
     }
 
     override fun handleNotification(data: Map<String, String>) {
-        val s3Key = data[imageKey]
-        val label = data[labelKey]
+        val s3Key = data[IMAGE_KEY]
+        val label = data[LABEL_KEY]
         handleNotificationData(s3Key, label)
     }
-
-//    private fun getColor(@ColorRes colorId: Int): Color {
-//
-//    }
 }
