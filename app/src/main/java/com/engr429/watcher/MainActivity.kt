@@ -10,7 +10,7 @@ import androidx.annotation.ColorRes
 import com.bumptech.glide.Glide
 import com.engr429.watcher.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NotificationDelegate {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        NotificationHandler.setDelegate(this)
         checkIntent()
         setupView()
     }
@@ -30,6 +31,12 @@ class MainActivity : AppCompatActivity() {
         intent.extras?.let { data ->
             val s3Key = data.getString(imageKey)
             val label = data.getString(labelKey)
+            handleNotificationData(s3Key, label)
+        }
+    }
+
+    private fun handleNotificationData(s3Key: String?, label: String?) {
+        runOnUiThread {
             Toast.makeText(this, "Found a $label", Toast.LENGTH_SHORT).show()
             loadImageFromKey(s3Key)
         }
@@ -79,6 +86,12 @@ class MainActivity : AppCompatActivity() {
         }
         binding.viewBlocker.visibility = if (show) View.GONE else View.VISIBLE
         binding.btnGetScene.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
+    override fun handleNotification(data: Map<String, String>) {
+        val s3Key = data[imageKey]
+        val label = data[labelKey]
+        handleNotificationData(s3Key, label)
     }
 
 //    private fun getColor(@ColorRes colorId: Int): Color {
