@@ -17,6 +17,7 @@
         app:layout_constraintDimensionRatio="1"
         android:backgroundTint="@color/white"
         app:cardElevation="4dp"
+        android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="25dp">
 
         <ImageView
@@ -24,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:src="@drawable/ic_launcher_foreground"
+            android:scaleType="centerCrop"
             />
     </androidx.cardview.widget.CardView>
 

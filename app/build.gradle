@@ -68,4 +68,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     implementation 'com.airbnb.android:lottie:4.2.1'
+
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 }
