@@ -1,5 +1,6 @@
 package com.engr429.watcher
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity(), NotificationDelegate {
             viewBlocker.setOnClickListener {}
             groupToggle.addOnButtonCheckedListener { _, id, isChecked -> onButtonChecked(id, isChecked) }
             btnGetScene.setOnClickListener { getSceneFromCam() }
+            btnAllScenes.setOnClickListener { startActivity(Intent(this@MainActivity, AllScenesActivity::class.java)) }
         }
     }
 

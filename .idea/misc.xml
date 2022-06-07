@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.23854166666666668" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.37395833333333334" />
+        <entry key="app/src/main/res/drawable/side_button_bg.xml" value="0.2917948717948718" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
       </map>
     </option>
   </component>
