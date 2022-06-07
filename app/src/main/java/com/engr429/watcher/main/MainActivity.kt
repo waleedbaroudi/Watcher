@@ -66,7 +66,9 @@ class MainActivity : AppCompatActivity(), NotificationDelegate {
     }
 
     private fun getSceneFromCam() {
-
+        val degree = binding.viewAngle.progress * 10
+        val update = WatcherUpdate(2, degree)
+        sendUpdate(update)
     }
 
     private fun onButtonChecked(id: Int, isChecked: Boolean) {
@@ -78,8 +80,12 @@ class MainActivity : AppCompatActivity(), NotificationDelegate {
                 showAngleUi(true)
                 WatcherUpdate(1)
             }
-            CallConsumer.consume(api.sendUpdate(update), {}, { Log.e(TAG, "onButtonChecked: ", it) })
+            sendUpdate(update)
         }
+    }
+
+    private fun sendUpdate(update: WatcherUpdate) {
+        CallConsumer.consume(api.sendUpdate(update), {}, { Log.e(TAG, "sendUpdate: ", it) })
     }
 
 

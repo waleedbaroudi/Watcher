@@ -44,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:src="@drawable/ic_launcher_foreground"
+            android:scaleType="centerCrop"
             />
     </androidx.cardview.widget.CardView>
 
@@ -67,12 +68,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:main_circle_color="@color/transparent"
         app:max="18"
+        app:min="0"
         app:progress_primary_circle_size="15"
         app:progress_primary_color="@color/blue"
         app:progress_secondary_circle_size="15"
         app:progress_secondary_color="@color/blue"
         app:start_offset="90"
-        app:sweep_angle="205" />
+        app:sweep_angle="208" />
 
     <View
         android:id="@+id/view_blocker"
