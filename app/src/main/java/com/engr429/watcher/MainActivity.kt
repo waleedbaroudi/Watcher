@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import com.bumptech.glide.Glide
 import com.engr429.watcher.databinding.ActivityMainBinding
@@ -13,11 +14,33 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private val imageKey = "key"
+    private val labelKey = "label"
+    private val serverUrl = "https://watcher-images.s3.eu-central-1.amazonaws.com"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        checkIntent()
         setupView()
+    }
+
+    private fun checkIntent() {
+        intent.extras?.let { data ->
+            val s3Key = data.getString(imageKey)
+            val label = data.getString(labelKey)
+            Toast.makeText(this, "Found a $label", Toast.LENGTH_SHORT).show()
+            loadImageFromKey(s3Key)
+        }
+    }
+
+    private fun loadImageFromKey(key: String?) {
+        if (key == null) {
+            Toast.makeText(this, "NULL KEY", Toast.LENGTH_SHORT).show()
+            return
+        }
+        Glide.with(this).load("$serverUrl/$key").into(binding.imgScene)
     }
 
     private fun setupView() {
@@ -29,7 +52,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getSceneFromCam() {
-        Glide.with(this).load("https://watcher-images.s3.eu-central-1.amazonaws.com/16ed484a911eef521f1de25df1844cbe").into(binding.imgScene)
         binding.btnGetScene.setOnClickListener {
             val bmp = (binding.imgScene.drawable as BitmapDrawable).bitmap
             binding.imgScene.setImageBitmap(bmp)
