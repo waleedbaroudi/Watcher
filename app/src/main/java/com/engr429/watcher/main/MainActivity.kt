@@ -60,10 +60,7 @@ class MainActivity : AppCompatActivity(), NotificationDelegate {
     }
 
     private fun getSceneFromCam() {
-        binding.btnGetScene.setOnClickListener {
-            val bmp = (binding.imgScene.drawable as BitmapDrawable).bitmap
-            binding.imgScene.setImageBitmap(bmp)
-        }
+
     }
 
     private fun onButtonChecked(id: Int, isChecked: Boolean) {
