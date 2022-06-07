@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Watcher">
         <activity
-            android:name=".AllScenesActivity"
+            android:name=".all_scenes.AllScenesActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

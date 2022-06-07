@@ -2,6 +2,7 @@ package com.engr429.watcher
 
 import android.os.Bundle
 import android.util.Log
+import com.engr429.watcher.main.NotificationHandler
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

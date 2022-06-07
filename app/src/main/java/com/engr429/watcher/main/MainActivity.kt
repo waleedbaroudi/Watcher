@@ -1,23 +1,23 @@
-package com.engr429.watcher
+package com.engr429.watcher.main
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.ColorRes
 import com.bumptech.glide.Glide
+import com.engr429.watcher.all_scenes.AllScenesActivity
+import com.engr429.watcher.R
+import com.engr429.watcher.Constants
+import com.engr429.watcher.Constants.imageKey
+import com.engr429.watcher.Constants.labelKey
+import com.engr429.watcher.Constants.serverUrl
 import com.engr429.watcher.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), NotificationDelegate {
 
     private lateinit var binding: ActivityMainBinding
-
-    private val imageKey = "key"
-    private val labelKey = "label"
-    private val serverUrl = "https://watcher-images.s3.eu-central-1.amazonaws.com"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,4 +1,4 @@
-package com.engr429.watcher
+package com.engr429.watcher.main
 
 import com.google.firebase.messaging.RemoteMessage
 
@@ -6,7 +6,7 @@ object NotificationHandler {
     private var delegate: NotificationDelegate? = null
 
     fun setDelegate(delegate: NotificationDelegate) {
-        this.delegate = delegate
+        NotificationHandler.delegate = delegate
     }
 
     fun onNotificationReceived(message: RemoteMessage) {
